@@ -1,0 +1,276 @@
+/* Primary Styles */
+*, *::before, *::after {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: sans-serif;
+   font-size: 1em;
+   color: #333;
+   margin-top: 17%;
+   overflow: hidden;
+   background: #192b3c url(../loader.gif) no-repeat center;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+em {
+   font-style: normal;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+} 
+
+/* Layout */
+.s-layout {
+   display: flex;
+   width: 100%;
+   min-height: 100vh;
+}
+
+.s-layout__content {
+
+   /* display: flex;
+   justify-content: center;
+   align-items: center;
+   flex: 1; */
+}
+
+.globalsearch{
+   width: 100%;
+   padding:5px;
+}
+
+.select_lang{
+   float: right;
+   position: fixed;
+   right: 0.4em;
+   top: 17px;
+   padding: 5px;
+}
+
+
+/* Sidebar */
+.s-sidebar__trigger {
+   z-index: 9999;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 4em;
+   background: #192b3c;
+}
+
+.s-sidebar__trigger > i {
+   display: inline-block;
+   margin: 1.5em 0 0 1.5em;
+   color: white;
+}
+
+.s-sidebar__nav {
+   z-index: 999;
+   position: fixed;
+   top: 9.2%;
+   left: -15em;
+   overflow: hidden;
+   transition: all .3s ease-in;
+   width: 15em;
+   height: 100%;
+   background: #243e56;
+   color: rgba(255, 255, 255, 0.7);
+}
+
+.s-sidebar__nav:hover,
+.s-sidebar__nav:focus,
+.s-sidebar__trigger:focus + .s-sidebar__nav,
+.s-sidebar__trigger:hover + .s-sidebar__nav {
+   left: 0;
+}
+
+.s-sidebar__nav ul {
+   position: absolute;
+   top: 4em;
+   left: 0;
+   margin: 0;
+   padding: 0;
+   width: 15em;
+}
+
+.s-sidebar__nav ul li {
+   width: 100%;
+}
+
+.s-sidebar__nav-link {
+   position: relative;
+   display: inline-block;
+   width: 100%;
+   height: 4em;
+}
+
+.s-sidebar__nav-link em {
+   position: absolute;
+   top: 50%;
+   left: 4em;
+   transform: translateY(-50%);
+}
+
+.s-sidebar__nav-link:hover {
+   background: #4d6276;
+}
+
+.s-sidebar__nav-link > i {
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: inline-block;
+   width: 4em;
+   height: 4em;
+}
+
+.s-sidebar__nav-link > i::before {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+
+/* Pour la mpa */
+
+#map, #details {
+   z-index: 99;
+   width:54vh;
+   height: 90%;
+ }
+
+ #details {
+   background: #efefef;
+   color: #000;
+   overflow:scroll;
+   padding:.5rem;
+ }
+ #details strong {
+   color: #c00;
+ }
+
+ .controls {
+   z-index: 999;
+   background-color: #fff;
+   border-radius: 2px;
+   border: 1px solid transparent;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+   box-sizing: border-box;
+   font-family: Roboto;
+   font-size: 15px;
+   font-weight: 300;
+   height: 29px;
+   outline: none;
+   padding: 0 11px 0 13px;
+   padding: 19px;
+   text-overflow: ellipsis;
+   width: 50%;
+
+   margin-left: -7px!important;
+   margin-top: 10px!important;
+ }
+
+ .controls:focus {
+   border-color: #4d90fe;
+ }
+
+ .buttons{
+   width: 100%;
+   position: absolute;
+   bottom: 6.7em;
+   left: 0;
+   text-align: center;
+ }
+
+ .button_add{
+    cursor:pointer;
+    width: 93%;
+    padding: 5px;
+    display: block;
+    font-size: 18px;
+    text-transform: uppercase;
+ }
+
+ /* Mobile First */
+@media (min-width: 42em) {
+   .s-layout__content {
+      width:100%;
+      margin-left: 15em;
+   }
+   
+   /* Sidebar */
+   /* .s-sidebar__trigger {
+      width: 4em;
+   } */
+
+   /* .controls{
+      z-index: 9!important;
+      position: absolute!important;
+      left: 0px!important;
+      top: 9px!important;
+   }
+   .gm-style-mtc{
+      margin-top: 30px!important;
+   } */
+
+   .globalsearch{
+      margin-left: 0em;
+   }
+
+   .s-sidebar__nav {
+      /* width: 4em; */
+      left: 0;
+   }
+   
+   body{
+      margin-top: 6%;
+   }  
+
+
+   .s-sidebar__nav:hover,
+   .s-sidebar__nav:focus,
+   .s-sidebar__trigger:hover + .s-sidebar__nav,
+   .s-sidebar__trigger:focus + .s-sidebar__nav {
+      width: 15em;
+   }
+
+}
+
+@media (min-width: 50em) {
+   .s-layout__content {
+      width: 100%;
+   }
+   
+   /* Sidebar */
+   /* .s-sidebar__trigger {
+      display: none
+   } */
+
+   #map, #details {
+      width:100%;
+   }
+   body{
+      margin-top: 6.5%;
+   }
+
+   /* .globalsearch{
+      margin-left: 9.5em;
+   } */
+
+   .s-sidebar__nav {
+      width: 15em;
+   }
+   
+   .s-sidebar__nav ul {
+      top: 1.3em;
+   }
+
+}
