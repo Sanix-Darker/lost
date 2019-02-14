@@ -20,7 +20,9 @@ var array_lang_value = [
         "MENU_OTHERS": "Autres",
         "MENU_ALL": "Tout",
         "LOOKING_BUTTON" : "Je Cherches",
-        "FOUND_BUTTON": "j'ai trouvé"
+        "FOUND_BUTTON": "j'ai trouvé",
+        "CHOOSE_CATEGORY": "Choisissez une catégorie",
+        "WRITE_DESCRIPTION": "Description (max 250)"
 	},
 	// en : English
 	{
@@ -33,7 +35,9 @@ var array_lang_value = [
         "MENU_OTHERS": "Others",
         "MENU_ALL": "All",
         "LOOKING_BUTTON" : "Looking for",
-        "FOUND_BUTTON": "i found "
+        "FOUND_BUTTON": "i found ",
+        "CHOOSE_CATEGORY": "Choose a category",
+        "WRITE_DESCRIPTION": "Description (max 250)"
 	},
 	// sp: spanish
 	{
@@ -46,10 +50,11 @@ var array_lang_value = [
         "MENU_OTHERS": "Otros",
         "MENU_ALL": "Todos",
         "LOOKING_BUTTON" : "Buscando",
-        "FOUND_BUTTON": "he encontrado"
+        "FOUND_BUTTON": "he encontrado",
+        "CHOOSE_CATEGORY": "Elige una categoría",
+        "WRITE_DESCRIPTION": "Descripción (max 250)"
 	}
 ];
-
 
 /**
  * [Lang_app description]

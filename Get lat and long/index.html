@@ -1,35 +1,43 @@
-<!DOCTYPE html>
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>Google Maps Autocomplete Address Search</title>
-  
-  
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Sarala:regular,700'>
-
-      <link rel="stylesheet" href="css/style.css">
-
-  
-</head>
-
-<body>
-
-  <h1>Google Maps Autocomplete Sample</h1>
+<style>
+  #latlng{
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    -webkit-box-shadow: 0px 4px 10px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 10px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 10px -3px rgba(0,0,0,0.75);
+  }
+</style>
 <input id="searchTextField" type="text" placeholder="Enter a location" autocomplete="off">
 <div id="info">
-	<a href="#" target="_blank" title="View on Google Maps"></a>
 	<div id="latlng">Coordinates</div>
 </div>
-  <script src='https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q'></script>
 
-  
+<script src='https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q'></script>
 
-    <script  src="js/index.js"></script>
+<script>
+    var a,lat,long;
+    var markerimg = 'https://i.imgur.com/Qwv4lBZ.png';
 
+    function initialize() {
+        //document.getElementById("info").style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center=toronto&zoom=15&scale=1&size=700x420&maptype=roadmap&format=png&visual_refresh=true&markers=icon:"+markerimg+"%7Cshadow:true%7Ctoronto)";
 
+        var searchBox = document.getElementById('searchTextField');
+        var defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(43.7182713,-79.3777061));
 
-
-</body>
-
-</html>
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(searchBox,defaultBounds);
+      
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+          var place = autocomplete.getPlace();
+          a = place.formatted_address;
+          lat = place.geometry.location.lat();
+          long = place.geometry.location.lng();
+          document.getElementById("latlng").innerHTML = 'Coordinates: '+lat+' , '+long;
+          // document.getElementById("info").style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center="+lat+','+long+"&zoom=15&key=AIzaSyAfxspB4AgYgfzf1ipKS5Al0CA3cAYfZRQ&scale=1&size=700x420&maptype=roadmap&format=png&visual_refresh=true&markers=icon:"+markerimg+"%7Cshadow:true%7C"+lat+','+long+")";
+        });
+    };
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
