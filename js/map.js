@@ -45,7 +45,6 @@ var initialize_form_place = function() {
 };
 
 
-
 var initMap = function() {
     initialize_form_place();
 

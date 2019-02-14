@@ -22,7 +22,11 @@ var array_lang_value = [
         "LOOKING_BUTTON" : "Je Cherches",
         "FOUND_BUTTON": "j'ai trouvé",
         "CHOOSE_CATEGORY": "Choisissez une catégorie",
-        "WRITE_DESCRIPTION": "Description (max 250)"
+        "WRITE_DESCRIPTION": "Description (max 250)",
+        "WRITE_IMAGE": "Photo",
+		"WRITE_CATEGORY":"Categorie",
+		"BUTTON_SEND": "Envoyer",
+		"BUTTON_CANCEL": "Annuler"
 	},
 	// en : English
 	{
@@ -37,7 +41,11 @@ var array_lang_value = [
         "LOOKING_BUTTON" : "Looking for",
         "FOUND_BUTTON": "i found ",
         "CHOOSE_CATEGORY": "Choose a category",
-        "WRITE_DESCRIPTION": "Description (max 250)"
+        "WRITE_DESCRIPTION": "Description (max 250)",
+        "WRITE_IMAGE": "Image",
+		"WRITE_CATEGORY": "Category",
+		"BUTTON_SEND": "Send",
+		"BUTTON_CANCEL": "Cancel"
 	},
 	// sp: spanish
 	{
@@ -52,7 +60,11 @@ var array_lang_value = [
         "LOOKING_BUTTON" : "Buscando",
         "FOUND_BUTTON": "he encontrado",
         "CHOOSE_CATEGORY": "Elige una categoría",
-        "WRITE_DESCRIPTION": "Descripción (max 250)"
+        "WRITE_DESCRIPTION": "Descripción (max 250)",
+		"WRITE_IMAGE": "Imagen",
+		"WRITE_CATEGORY": "Categoría",
+		"BUTTON_SEND": "Enviar",
+		"BUTTON_CANCEL": "Anular"
 	}
 ];
 

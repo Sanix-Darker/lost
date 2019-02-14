@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-xhr.open('GET', '/path/to/database.sqlite', true);
+xhr.open('GET', '/DB/lost.sqlite', true);
 xhr.responseType = 'arraybuffer';
 
 xhr.onload = e => {
@@ -7,18 +7,15 @@ xhr.onload = e => {
   var db = new SQL.Database(uInt8Array);
   var contents = db.exec("SELECT * FROM my_table");
   // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
-};
-xhr.send();
 
-/*
-<script src='js/sql.js'></script>
-<script>
+
+
   //Create the database
-  var db = new SQL.Database();
+  // var db = new SQL.Database();
   // Run a query without reading the results
   db.run("CREATE TABLE test (col1, col2);");
   // Insert two rows: (1,111) and (2,222)
-  db.run("INSERT INTO test VALUES (?,?), (?,?)", [1,111,2,222]);
+  db.run("INSERT INTO test VALUES (?,?)", [1,111,2,222]);
 
   // Prepare a statement
   var stmt = db.prepare("SELECT * FROM test WHERE col1 BETWEEN $start AND $end");
@@ -30,5 +27,18 @@ xhr.send();
     var row = stmt.getAsObject();
     // [...] do something with the row of result
   }
-</script>
-*/
+
+};
+xhr.send();
+
+var INSERT = function (database, table, array_row){
+
+}
+
+var UPDATE = function (database, table, array_row){
+
+}
+
+var DELETE = function(database, table, array_row){
+
+}

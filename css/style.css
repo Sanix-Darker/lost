@@ -214,7 +214,7 @@ a {
    justify-content: center;
    height: 0vh;
    background-color: transparent;
-   overflow: hidden;
+   overflow: auto;
    transition: background-color 0.25s ease;
    z-index: 9999;
  }
@@ -322,7 +322,8 @@ a {
    z-index: 1;
  }
  .modal .content-wrapper .modal-footer .action:before {
-   position: absolute;
+   position: 
+   absolute;
    content: '';
    top: 0;
    left: 0;
@@ -359,6 +360,17 @@ a {
 
 .pac-container{
    z-index: 999999!important;
+}
+
+.preview-img{
+   width:100%;
+   border-radius: 3%;
+}
+
+.lost_form{
+   padding: 8px;
+   width:100%;
+   margin-bottom:15px;
 }
 
 /* Mobile First */

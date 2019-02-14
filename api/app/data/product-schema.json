@@ -1,0 +1,33 @@
+{
+    "title": "Found",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 540
+        },
+        "price": {
+            "description": "Price in 'currency'",
+            "type": "number",
+            "minimum": 0
+        },
+        "currency": {
+            "description": "ISO 4217 Currency Code",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        }
+    },
+    "required": [
+        "name",
+        "description",
+        "price",
+        "currency"
+    ]
+}

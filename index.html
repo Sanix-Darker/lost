@@ -68,13 +68,7 @@
       </main>
    </div>
 
-   <style>
-      .lost_form{
-         padding: 8px;
-         width:100%;
-         margin-bottom:15px;
-      }
-   </style>
+
    <div data-modal="trigger-1" class="modal">
       <article class="content-wrapper">
          <button class="close"></button>
@@ -83,12 +77,25 @@
          </header>
          <div class="content" style="padding:10px;width: 100%;">
 
-            <select class="lost_form">
-               <option translate="CHOOSE_CATEGORY">Choose a category</option>
-               <option translate="MENU_PEOPLE">People</option>
-               <option translate="MENU_ANIMALS">Animals</option>
-               <option translate="MENU_OTHERS">Others</option>
-            </select>
+            <label>
+               <span translate="WRITE_IMAGE">Image </span>
+               <div class="preview">
+                  <img src="" alt="" class="preview-img">
+               </div>
+               <input type="file" accept=".png,.jpeg,.jpg,.gif">
+               <button class="button" onclick="clearField()">Clear field </button>
+            </label>
+            <br><br>
+
+            <label>
+               <span translate="WRITE_CATEGORY">Category </span>
+               <select class="lost_form">
+                  <option translate="CHOOSE_CATEGORY">Choose a category</option>
+                  <option translate="MENU_PEOPLE">People</option>
+                  <option translate="MENU_ANIMALS">Animals</option>
+                  <option translate="MENU_OTHERS">Others</option>
+               </select>
+            </label>
             <br>
 
             <label >
@@ -100,15 +107,13 @@
             
             <label>
                <span translate="WRITE_DESCRIPTION">Description (max 250 )</span>
-               <textarea class="lost_form"></textarea>
+               <textarea class="lost_form" row="4"></textarea>
             </label>
-            
-            Image (facultatif)
 
          </div>
          <footer class="modal-footer">
-            <button class="action">Accept</button>
-            <button class="action">Decline</button>
+            <button class="action" translate="BUTTON_SEND">Send</button>
+            <button class="action" translate="BUTTON_CANCEL">Cancel</button>
          </footer>
       </article>
    </div>
@@ -129,13 +134,12 @@
       </article>
    </div>
 
-
-
    <small style="position:fixed;bottom: 0.3em;left: 9em;z-index:999999!important;color:white;">By <a href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
 
-
+   <script type="text/javascript" src = "js/sql.js"></script>
    <script type="text/javascript" src = "js/modal.js"></script>
    <script type="text/javascript" src = "js/lang.js"></script>
+   <script type="text/javascript" src = "js/form.js"></script>
 
    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&amp;language=en&amp;libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q" async defer></script>
    <script type="text/javascript" src = "js/map.js"></script>
