@@ -67,9 +67,9 @@ var buildInfowindow = function(locations, comments){
   //console.log("locations: ", locations);
   var id = UniqueID();
   return '<div id="iw-container">' +
-          ((locations[4] == "found") ? '<div class="redSup" translate="LOOKING_BUTTON">Looking for</div>' : '<div class="greenSup" translate="FOUND_BUTTON"> I found </div>') +
+          ((locations[4] !== "found") ? '<div class="redSup" translate="LOOKING_BUTTON">Looking for</div>' : '<div class="greenSup" translate="FOUND_BUTTON"> I found </div>') +
             '<div class="iw-content">' +
-              '<img src="'+locations[5]+'" alt="Image" >' +
+              '<img src="http://'+locations[5]+'" alt="Image" >' +
               '<div class="iw-subTitle">' + locations[0] + '</div>' +
               '<br><div class="infowindow_description">' + locations[6] + '</div><hr>'+
               // '<span translate="EXPLICATIONS_COMMENTS">Please contact me directly or write a small comment here to help me, thank you (<b>Note:</b> You can write only 2 comments).<br></span>'+
@@ -379,3 +379,135 @@ var filter = function(level){
   generateMapFromLocations(locations);
   locations = loc;
 }
+
+
+// Formulaires
+var input = document.getElementById('previewfile1');
+var img = document.getElementById('previewimg1');
+
+input.addEventListener('change', function(event){
+   var file = event.target.files[0];
+
+   if(file.size > 500000){
+     alert("Your image is too hight!")
+     return false;
+   }
+
+   if (file) {
+      var fileReader = new FileReader();
+
+      fileReader.addEventListener("load", function () {
+      img.src = fileReader.result;
+      }, false);
+
+      img.src = fileReader.readAsDataURL(file);
+   }
+});
+
+var input2 = document.getElementById('previewfile2');
+var img2 = document.getElementById('previewimg2');
+
+input2.addEventListener('change', function(event){
+   var file = event.target.files[0];
+  
+    if(file.size > 500000){
+      alert("Your image is too hight!")
+      return false;
+    }
+   if (file) {
+      var fileReader = new FileReader();
+
+      fileReader.addEventListener("load", function () {
+         img2.src = fileReader.result;
+      }, false);
+
+      img2.src = fileReader.readAsDataURL(file);
+   }
+});
+
+// function clearField() {
+//    img.src ="";   
+//    input.value="";
+// };
+
+function send(type){
+
+  document.querySelector(".action").innerHTML = "Sending......";
+
+   var formData = new FormData();
+
+   if (type == "looking"){
+      // HTML file input, chosen by user
+      formData.append("file", input.files[0]);
+   }else{
+      // HTML file input, chosen by user
+      formData.append("file", input2.files[0]);
+   }
+
+   var request = new XMLHttpRequest();
+   request.open("POST", "http://lostimage.000webhostapp.com");
+   request.onload = function () {
+     
+     var response = JSON.parse(request.responseText);
+     if (request.readyState == 4 && request.status == "200") {
+
+         //console.log("response: ", response);
+
+         var image = response.url, categorie = "", adresse =  "", lat =  "", lng =  "", description = "";
+
+         //console.log("image:", image);
+
+         if (type == "looking"){
+            categorie = document.getElementById("categorie").value;
+            adresse = document.getElementById("searchTextField").value;
+            lat = document.getElementById("lat").value;
+            lng = document.getElementById("lng").value;
+            description = document.getElementById("description").value;
+         }else{
+            categorie = document.getElementById("categorie2").value;
+            adresse = document.getElementById("searchTextField2").value;
+            lat = document.getElementById("lat2").value;
+            lng = document.getElementById("lng2").value;
+            description = document.getElementById("description2").value;
+         }
+
+        //  console.log("http://sanix.pythonanywhere.com/api/lost?method=post&image="+image+
+        //  "&categorie="+categorie+
+        //    "&adresse="+adresse+
+        //      "&lat="+lat+
+        //        "&lng="+lng+
+        //          "&description="+description);
+
+         var request2 = new XMLHttpRequest();
+         request2.open("GET", "http://sanix.pythonanywhere.com/api/lost?method=post&image="+image+
+                                                                                              "&categorie="+categorie+
+                                                                                                "&adresse="+adresse+
+                                                                                                  "&lat="+lat+
+                                                                                                    "&lng="+lng+
+                                                                                                      "&description="+description+
+                                                                                                        "&type="+type);
+         request2.onload = function () {
+           
+           var response2 = JSON.parse(request2.responseText);
+           if (request2.readyState == 4 && request2.status == "200") {
+               console.log("response2: ", response2);
+               document.querySelector('.close').click();
+               // close
+               initMap();
+               // Center sur les parametres voulus
+               moveToLocation(parseFloat(lat), parseFloat(lng));
+
+              document.querySelector(".action").innerHTML = "Send";
+
+           }
+         }
+         request2.send(null);
+
+     }
+   }
+   request.send(formData);
+
+
+
+   // http://sanix.pythonanywhere.com/api/lost?method=getall
+ }
