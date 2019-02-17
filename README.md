@@ -1,4 +1,4 @@
-<img src="img/logo.PNG"/>
+<img src="img/logo.png"/>
 
 # LOST
 
