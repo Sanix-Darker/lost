@@ -78,6 +78,7 @@
          <div class="content" style="padding:10px;width: 100%;">
 
             <label>
+               <input type="hidden" id="image" value="" />
                <span translate="WRITE_IMAGE">Image </span>
                <div class="preview">
                   <img src="" alt="" class="preview-img">
@@ -89,11 +90,11 @@
 
             <label>
                <span translate="WRITE_CATEGORY">Category </span>
-               <select class="lost_form">
+               <select class="lost_form" id="categorie">
                   <option translate="CHOOSE_CATEGORY">Choose a category</option>
-                  <option translate="MENU_PEOPLE">People</option>
-                  <option translate="MENU_ANIMALS">Animals</option>
-                  <option translate="MENU_OTHERS">Others</option>
+                  <option translate="MENU_PEOPLE" value="1">People</option>
+                  <option translate="MENU_ANIMALS" value="2">Animals</option>
+                  <option translate="MENU_OTHERS" value="3">Others</option>
                </select>
             </label>
             <br>
@@ -102,18 +103,20 @@
                <span >Localisation</span>
                <input id="searchTextField" type="text" class="lost_form" placeholder="Enter a location" autocomplete="off">
                <div id="latlng"></div>
+               <input type="hidden" id="lat" value="" />
+               <input type="hidden" id="lng" value="" />
             </label>
             <br>
             
             <label>
                <span translate="WRITE_DESCRIPTION">Description (max 250 )</span>
-               <textarea class="lost_form" row="4"></textarea>
+               <textarea class="lost_form" row="4" id="description"></textarea>
             </label>
 
          </div>
          <footer class="modal-footer">
-            <button class="action" translate="BUTTON_SEND">Send</button>
-            <button class="action" translate="BUTTON_CANCEL">Cancel</button>
+            <button class="action" translate="BUTTON_SEND" onclick="send('looking')">Send</button>
+            <!-- <button class="action close" translate="BUTTON_CANCEL">Cancel</button> -->
          </footer>
       </article>
    </div>
@@ -124,19 +127,54 @@
          <header class="modal-header">
             <h2 translate="FOUND_BUTTON"> I found </h2>
          </header>
-         <div class="content">
+         <div class="content"  style="padding:10px;width: 100%;">
+
+            <label>
+               <input type="hidden" id="image2" value="" />
+               <span translate="WRITE_IMAGE">Image </span>
+               <div class="preview">
+                  <img src="" alt="" class="preview-img">
+               </div>
+               <input type="file" accept=".png,.jpeg,.jpg,.gif">
+               <button class="button" onclick="clearField()">Clear field </button>
+            </label>
+            <br><br>
+
+            <label>
+               <span translate="WRITE_CATEGORY">Category </span>
+               <select class="lost_form" id="categorie2">
+                  <option translate="CHOOSE_CATEGORY">Choose a category</option>
+                  <option translate="MENU_PEOPLE" value="1">People</option>
+                  <option translate="MENU_ANIMALS" value="2">Animals</option>
+                  <option translate="MENU_OTHERS" value="3">Others</option>
+               </select>
+            </label>
+            <br>
+
+            <label >
+               <span >Localisation</span>
+               <input id="searchTextField2" type="text" class="lost_form" placeholder="Enter a location" autocomplete="off">
+               <div id="latlng2"></div>
+               <input type="hidden" id="lat2" value="" />
+               <input type="hidden" id="lng2" value="" />
+            </label>
+            <br>
+            
+            <label>
+               <span translate="WRITE_DESCRIPTION">Description (max 250 )</span>
+               <textarea class="lost_form" row="4" id="description2"></textarea>
+            </label>
 
          </div>
          <footer class="modal-footer">
-            <button class="action">Accept</button>
-            <button class="action">Decline</button>
+            <button class="action" translate="BUTTON_SEND" onclick="send('found')">Send</button>
+            <!-- <button class="action close" translate="BUTTON_CANCEL">Cancel</button> -->
          </footer>
       </article>
    </div>
 
    <small style="position:fixed;bottom: 0.3em;left: 9em;z-index:999999!important;color:white;">By <a href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
 
-   <script type="text/javascript" src = "js/sql.js"></script>
    <script type="text/javascript" src = "js/modal.js"></script>
    <script type="text/javascript" src = "js/lang.js"></script>
    <script type="text/javascript" src = "js/form.js"></script>

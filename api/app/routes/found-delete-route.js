@@ -45,7 +45,7 @@ function updateFound(found, res, db){
     }
 
     else{
-        var sql = `delete from  Founds where id = ?;`;
+        var sql = `delete from founds where id = ?;`;
         var values = [id];
 
         db.serialize(function () {

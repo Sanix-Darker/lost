@@ -26,7 +26,11 @@ var array_lang_value = [
         "WRITE_IMAGE": "Photo",
 		"WRITE_CATEGORY":"Categorie",
 		"BUTTON_SEND": "Envoyer",
-		"BUTTON_CANCEL": "Annuler"
+		"BUTTON_CANCEL": "Annuler",
+		"EXPLICATIONS_COMMENTS":"Contactez-moi directement ou écrivez un petit commentaire ici pour m'aider, merci (<b> Remarque: </b> vous ne pouvez écrire que 2 commentaires). <br>",
+		"FORM_CONTACT": "Ton contact",
+		"FORM_COMMENTS_DESCRIPTION": "Expliquez en quelques lignes où vous avez trouvé (max 100)",
+		"SUBTITLE_COMMENTS": "Certains commentaires"
 	},
 	// en : English
 	{
@@ -45,7 +49,11 @@ var array_lang_value = [
         "WRITE_IMAGE": "Image",
 		"WRITE_CATEGORY": "Category",
 		"BUTTON_SEND": "Send",
-		"BUTTON_CANCEL": "Cancel"
+		"BUTTON_CANCEL": "Cancel",
+		"EXPLICATIONS_COMMENTS":"Please contact me directly or write a small comment here to help me, thank you (<b>Note:</b> You can write only 2 comments).<br>",
+		"FORM_CONTACT": "Your contact",
+		"FORM_COMMENTS_DESCRIPTION": "Explain in a few lines where you found (max 100)",
+		"SUBTITLE_COMMENTS": "Some comments"
 	},
 	// sp: spanish
 	{
@@ -64,7 +72,11 @@ var array_lang_value = [
 		"WRITE_IMAGE": "Imagen",
 		"WRITE_CATEGORY": "Categoría",
 		"BUTTON_SEND": "Enviar",
-		"BUTTON_CANCEL": "Anular"
+		"BUTTON_CANCEL": "Anular",
+		"EXPLICATIONS_COMMENTS":"Comuníquese conmigo directamente o escriba un pequeño comentario aquí para ayudarme, gracias (<b> Nota: </b> Puede escribir solo 2 comentarios). <br>",
+		"FORM_CONTACT": "Su contacto",
+		"FORM_COMMENTS_DESCRIPTION": "Explica en unas pocas líneas donde encontraste (max 100)",
+		"SUBTITLE_COMMENTS": "Algunos comentarios"
 	}
 ];
 
@@ -73,7 +85,7 @@ var array_lang_value = [
  * Author Sanix darker
  */
 function change_lang(langcode){
-	console.log(langcode)
+	//console.log(langcode)
 	var lang = langcode
 
 	// If the lang parameter exist

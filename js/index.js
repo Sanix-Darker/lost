@@ -1,44 +1,111 @@
-var xhr = new XMLHttpRequest();
-xhr.open('GET', '/DB/lost.sqlite', true);
-xhr.responseType = 'arraybuffer';
+// Get all users
+// var url  = "http://localhost:8080/api/v1/users";
+// var xhr  = new XMLHttpRequest()
+// xhr.open('GET', url, true)
+// xhr.onload = function () {
+// 	var users = JSON.parse(xhr.responseText);
+// 	if (xhr.readyState == 4 && xhr.status == "200") {
+// 		console.table(users);
+// 	} else {
+// 		console.error(users);
+// 	}
+// }
+// xhr.send(null);
 
-xhr.onload = e => {
-  var uInt8Array = new Uint8Array(this.response);
-  var db = new SQL.Database(uInt8Array);
-  var contents = db.exec("SELECT * FROM my_table");
-  // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
+
+// // Get a user
+// var url  = "http://localhost:8080/api/v1/users";
+// var xhr  = new XMLHttpRequest()
+// xhr.open('GET', url+'/1', true)
+// xhr.onload = function () {
+// 	var users = JSON.parse(xhr.responseText);
+// 	if (xhr.readyState == 4 && xhr.status == "200") {
+// 		console.table(users);
+// 	} else {
+// 		console.error(users);
+// 	}
+// }
+// xhr.send(null);
 
 
+// // Post a user
+// var url = "http://localhost:8080/api/v1/users";
 
-  //Create the database
-  // var db = new SQL.Database();
-  // Run a query without reading the results
-  db.run("CREATE TABLE test (col1, col2);");
-  // Insert two rows: (1,111) and (2,222)
-  db.run("INSERT INTO test VALUES (?,?)", [1,111,2,222]);
+// var data = {};
+// data.firstname = "John";
+// data.lastname  = "Snow";
+// var json = JSON.stringify(data);
 
-  // Prepare a statement
-  var stmt = db.prepare("SELECT * FROM test WHERE col1 BETWEEN $start AND $end");
-  stmt.getAsObject({$start:1, $end:1}); // {col1:1, col2:111}
+// var xhr = new XMLHttpRequest();
+// xhr.open("POST", url, true);
+// xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+// xhr.onload = function () {
+// 	var users = JSON.parse(xhr.responseText);
+// 	if (xhr.readyState == 4 && xhr.status == "201") {
+// 		console.table(users);
+// 	} else {
+// 		console.error(users);
+// 	}
+// }
+// xhr.send(json);
 
-  // Bind new values
-  stmt.bind({$start:1, $end:2});
-  while(stmt.step()) { //
-    var row = stmt.getAsObject();
-    // [...] do something with the row of result
+
+// // Update a user
+// var url = "http://localhost:8080/api/v1/users";
+
+// var data = {};
+// data.firstname = "John2";
+// data.lastname  = "Snow2";
+// var json = JSON.stringify(data);
+
+// var xhr = new XMLHttpRequest();
+// xhr.open("PUT", url+'/12', true);
+// xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+// xhr.onload = function () {
+// 	var users = JSON.parse(xhr.responseText);
+// 	if (xhr.readyState == 4 && xhr.status == "200") {
+// 		console.table(users);
+// 	} else {
+// 		console.error(users);
+// 	}
+// }
+// xhr.send(json);
+
+
+// // Delete a user
+// var url = "http://localhost:8080/api/v1/users";
+// var xhr = new XMLHttpRequest();
+// xhr.open("DELETE", url+'/12', true);
+// xhr.onload = function () {
+// 	var users = JSON.parse(xhr.responseText);
+// 	if (xhr.readyState == 4 && xhr.status == "200") {
+// 		console.table(users);
+// 	} else {
+// 		console.error(users);
+// 	}
+// }
+// xhr.send(null);
+
+
+function send(type){
+
+  var image = "", categorie = "", adresse =  "", lat =  "", lng =  "", description = "", type="";
+
+  if (type == "looking"){
+    image = document.getElementById("image").value;
+    categorie = document.getElementById("categorie").value;
+    adresse = document.getElementById("searchTextField").value;
+    lat = document.getElementById("lat").value;
+    lng = document.getElementById("lng").value;
+    description = document.getElementById("description").value;
+  }else{
+    image = document.getElementById("image2").value;
+    categorie = document.getElementById("categorie2").value;
+    adresse = document.getElementById("searchTextField2").value;
+    lat = document.getElementById("lat2").value;
+    lng = document.getElementById("lng2").value;
+    description = document.getElementById("description2").value;
   }
 
-};
-xhr.send();
-
-var INSERT = function (database, table, array_row){
-
-}
-
-var UPDATE = function (database, table, array_row){
-
-}
-
-var DELETE = function(database, table, array_row){
-
+  // http://sanix.pythonanywhere.com/api/lost?method=getall
 }

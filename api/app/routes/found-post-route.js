@@ -38,16 +38,19 @@ function processFound(req, res, db){
 }
 
 function insertFound(found, res, db){
-    var name = found.name;
+    var image = found.image;
+    var categorie = found.categorie;
+    var adresse = found.adresse;
+    var lat = found.lat;
+    var lng = found.lng;
     var description = found.description;
-    var price = found.price;
-    var currency = found.currency;
+    var type = found.type;
 
-    var sql = `insert into Founds (name, description, price, currency) 
-            VALUES 
-            (?, ?, ?, ?);`;
+    console.log("found:", found);
 
-    var values = [name, description, price, currency];
+    var sql = `INSERT INTO "founds" (image, categorie, adresse, lat, lng, description, type) VALUES  (?, ?, ?, ?, ?, ?, ?);`;
+
+    var values = [image, categorie, adresse, lat, lng, description, type];
 
     db.serialize(function () {
         db.run(sql, values, function (err) {

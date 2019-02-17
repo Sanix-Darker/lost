@@ -1,0 +1,50 @@
+{
+    "title": "Found",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "image": {
+            "type": "string"
+        },
+        "categorie": {
+            "type": "string",
+            "maxLength": 540
+        },
+        "adresse": {
+            "description": "Adress",
+            "type": "string",
+            "minimum": 0
+        },
+        "lat": {
+            "description": "Latitude of the adress",
+            "type": "string",
+            "minimum": 0
+        },
+        "lng": {
+            "description": "Longitude of the adress",
+            "type": "string",
+            "minimum": 0
+        },
+        "description": {
+            "description": "Description of the thing",
+            "type": "string",
+            "minimum": 0
+        },
+        "type": {
+            "description": "looking for or found",
+            "type": "string",
+            "minimum": 0
+        }
+    },
+    "required": [
+        "image",
+        "categorie",
+        "adresse",
+        "lat",
+        "lng",
+        "description",
+        "type"
+    ]
+}

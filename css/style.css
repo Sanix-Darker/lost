@@ -201,6 +201,51 @@ a {
  }
 
 
+#map img {
+	max-width: none !important;
+}
+.gm-style-iw {
+	width: 450px !important;
+	top: 15px !important;
+	left: 0px !important;
+	background-color: #fff;
+	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+	border: 1px solid rgba(72, 181, 233, 0.6);
+	border-radius: 2px 2px 10px 10px;
+}
+#iw-container {
+	margin-bottom: 10px;
+}
+#iw-container .iw-content {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+	margin-right: 1px;
+	padding: 15px 5px 20px 15px;
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.iw-content img {
+   max-width:100%;
+   max-height:200px
+}
+.iw-subTitle {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 5px 0;
+}
+
+.infowindow_description{
+   max-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.infowindowForm{
+   width:100%;
+   padding: 2px;
+}
+
 /* -------------------------------------------------------------------------------- */
 /* Pour les modals */
 /* -------------------------------------------------------------------------------- */
@@ -347,7 +392,7 @@ a {
 /* Formulaires */
 /* -------------------------------------------------------------------------------- */
 
-#latlng{
+#latlng, #latlng2{
    background: rgba(0,0,0,0.7);
    color: #fff;
    font-weight: bold;
@@ -363,7 +408,7 @@ a {
 }
 
 .preview-img{
-   width:100%;
+   max-width:100%;
    border-radius: 3%;
 }
 

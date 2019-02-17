@@ -45,17 +45,18 @@ function checkIfExist(){
 function updateFound(found, res, db){
     checkIfExist();
 
-    var name = found.name;
+    var image = found.image;
+    var categorie = found.categorie;
+    var adresse = found.adresse;
+    var lat = found.lat;
+    var lng = found.lng;
     var description = found.description;
-    var price = found.price;
-    var currency = found.currency;
+    var type = found.type;
     var id = found.id;
 
-    var sql = `update Founds
-            set name = ?, description = ?, price = ?, currency = ?
-            where id = ?;`;
+    var sql = `UPDATE founds SET image = ?, categorie = ?, adresse = ?, lat = ?, lng = ?, description = ?, type = ? WHERE id = ?;`;
 
-    var values = [name, description, price, currency, id];
+    var values = [image, categorie, adresse, lat, lng, description, type, id];
 
     db.serialize(function () {
         db.run(sql, values, function (err) {

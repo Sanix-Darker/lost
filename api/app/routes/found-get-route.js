@@ -63,10 +63,10 @@ module.exports = function(app, db) {
 
   function sendData(res, data, err){
     res.setHeader("Access-Control-Allow-Origin","*");
-
+    console.log("data:", data);
     if(data[0])
       res.send(data);
-    
+      
     else{
       res.status(404).send("Found not found");
     }
