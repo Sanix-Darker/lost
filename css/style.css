@@ -91,6 +91,10 @@ a {
    left: 0;
 }
 
+.menu_selected{
+   background: #4d6276;
+}
+
 .s-sidebar__nav ul {
    position: absolute;
    top: 4em;
@@ -141,6 +145,25 @@ a {
 /* -------------------------------------------------------------------------------- */
 /* Pour la map */
 /* -------------------------------------------------------------------------------- */
+
+.redSup, .greenSup{
+   padding: 3px;
+   color: white;
+   width: 25%;
+   margin-left: 15px;
+   text-transform: uppercase;
+   margin-bottom: -10px;
+}
+
+.redSup{
+   background: red;
+}
+
+.greenSup{
+   background: green;
+}
+
+
 #map, #details {
    z-index: 99;
    width:54vh;
@@ -173,7 +196,6 @@ a {
    padding: 19px;
    text-overflow: ellipsis;
    width: 50%;
-
    margin-left: -7px!important;
    margin-top: 10px!important;
  }
@@ -416,6 +438,45 @@ a {
    padding: 8px;
    width:100%;
    margin-bottom:15px;
+}
+
+
+/* -----------------------------------------------------------------------------------
+* Pour l'autocomplete
+-------------------------------------------------------------------------------------*/
+.autocomplete-items {
+   color:black;
+   position: absolute;
+   border: 1px solid #d4d4d4;
+   border-bottom: none;
+   border-top: none;
+   z-index: 99;
+   /*position the autocomplete items to be the same width as the container:*/
+   top: 100%;
+   left: 0;
+   right: 0;
+}
+
+.autocomplete-items div {
+   padding: 10px;
+   cursor: pointer;
+   background-color: #fff; 
+   border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+   .autocomplete-items div:hover {
+   background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+   background-color: DodgerBlue !important; 
+   color: #ffffff; 
+}
+.autocomplete {
+   position: relative;
+   display: inline-block;
 }
 
 /* Mobile First */

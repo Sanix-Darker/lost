@@ -64,37 +64,39 @@ var UniqueID = function () {
 
 
 var buildInfowindow = function(locations, comments){
-
+  //console.log("locations: ", locations);
   var id = UniqueID();
   return '<div id="iw-container">' +
+          ((locations[4] == "found") ? '<div class="redSup" translate="LOOKING_BUTTON">Looking for</div>' : '<div class="greenSup" translate="FOUND_BUTTON"> I found </div>') +
             '<div class="iw-content">' +
               '<img src="'+locations[5]+'" alt="Image" >' +
               '<div class="iw-subTitle">' + locations[0] + '</div>' +
               '<br><div class="infowindow_description">' + locations[6] + '</div><hr>'+
-              '<span translate="EXPLICATIONS_COMMENTS">Please contact me directly or write a small comment here to help me, thank you (<b>Note:</b> You can write only 2 comments).<br></span>'+
-              '<div id="found_'+id+'" >'+
-                '<label>'+
-                    '<span translate="FORM_CONTACT">Your Contact</span><br>'+
-                    '<input type="text" id="textfound_'+id+'" placeholder="max(50)" class="infowindowForm"/>'+
-                '</label><br>'+
-                '<label>'+
-                    '<span  translate="FORM_COMMENTS_DESCRIPTION">Explains in few line where you found(max 100)</span><br>'+
-                    '<textarea rows="5" id="descriptionfound_'+id+'" class="infowindowForm"></textarea><br>'+
-                '</label>'+
-                '<button translate="BUTTON_SEND">Send</button>'+
-              '</div>'+
-              '<br><span translate="SUBTITLE_COMMENTS">Some Comments</span>'+
-              '<div id="comments_'+id+'">'+
-                comments+
-              '</div>'+
+              // '<span translate="EXPLICATIONS_COMMENTS">Please contact me directly or write a small comment here to help me, thank you (<b>Note:</b> You can write only 2 comments).<br></span>'+
+              // '<div id="found_'+id+'" >'+
+              //   '<label>'+
+              //       '<span translate="FORM_CONTACT">Your Contact</span><br>'+
+              //       '<input type="text" id="textfound_'+id+'" placeholder="max(50)" class="infowindowForm"/>'+
+              //   '</label><br>'+
+              //   '<label>'+
+              //       '<span  translate="FORM_COMMENTS_DESCRIPTION">Explains in few line where you found(max 100)</span><br>'+
+              //       '<textarea rows="5" id="descriptionfound_'+id+'" class="infowindowForm"></textarea><br>'+
+              //   '</label>'+
+              //   '<button translate="BUTTON_SEND">Send</button>'+
+              // '</div>'+
+              // '<br><span translate="SUBTITLE_COMMENTS">Some Comments</span>'+
+              // '<div id="comments_'+id+'">'+
+              //   comments+
+              // '</div>'+
             '</div>'+
           '</div>';
 } 
 
 var map;
 var generateMapFromLocations = function(locations){
+
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
+    zoom: 3,
     center: new google.maps.LatLng(4, 9),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -128,6 +130,53 @@ var generateMapFromLocations = function(locations){
   }
 }
 
+/* AUTO COMPLETE METHODS ----
+----------------------------*/
+//the text field element and an array of possible autocompleted values:*/
+var currentFocus;
+var inp = document.getElementById("myInput");
+function addActive(x) {
+  /*a function to classify an item as "active":*/
+  if (!x) return false;
+  /*start by removing the "active" class on all items:*/
+  removeActive(x);
+  if (currentFocus >= x.length) currentFocus = 0;
+  if (currentFocus < 0) currentFocus = (x.length - 1);
+  /*add class "autocomplete-active":*/
+  x[currentFocus].classList.add("autocomplete-active");
+}
+function removeActive(x) {
+  /*a function to remove the "active" class from all autocomplete items:*/
+  for (var i = 0; i < x.length; i++) {
+  x[i].classList.remove("autocomplete-active");
+  }
+}
+function closeAllLists(elmnt) {
+  /*close all autocomplete lists in the document,
+  except the one passed as an argument:*/
+  var x = document.getElementsByClassName("autocomplete-items");
+  for (var i = 0; i < x.length; i++) {
+  if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+  }
+  }
+}
+
+
+var getElement_By_Description = function(datas, description){
+  // console.log("datas: ", datas);
+  // console.log("description: ", description);
+  return datas.filter(obj => {
+    return obj.description == description
+  })[0];
+}
+
+function moveToLocation(lat, lng){
+  var center = new google.maps.LatLng(lat, lng);
+  // using global variable:
+  map.panTo(center);
+  map.setZoom(13);
+}
 
 var xhr  = new XMLHttpRequest();
 var locations;
@@ -152,11 +201,97 @@ var initMap = function() {
                         lost.data[i].description ]);
         }
         loc = loc.reverse();
-        //console.log("array_", loc);
-
+        
         locations = loc;
-
+        //console.log("Haut locations:", locations)
         generateMapFromLocations(locations);
+
+        /* AUTO COMPLETE SCRIPT ----
+        ----------------------------*/
+        /*the autocomplete function takes two arguments,*/
+        var arr = lost.data;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function(e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false;}
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                //if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                if (arr[i].description.toLowerCase().includes(val.toLowerCase())) {
+
+                  /*create a DIV element for each matching element:*/
+                  b = document.createElement("DIV");
+                  /*make the matching letters bold:*/
+                  var re = new RegExp("\\b("+val+")\\b");
+                  var subst = '<strong>$1</strong>';
+
+                  // A Proble for the regex here, will look it later
+                  // console.log("re: ", re);
+                  // console.log("val: ", val);
+                  // console.log("arr[i]: ", arr[i]);
+                  // console.log("subst: ", subst);
+                  // console.log("arr[i].replace(re, subst): ", arr[i].replace(re, subst));
+
+                  b.innerHTML = arr[i].description.replace(re, subst);
+                  /*insert a input field that will hold the current array item's value:*/
+                  b.innerHTML += "<input type='hidden' value='" + arr[i].description + "'>";
+                  /*execute a function when someone clicks on the item value (DIV element):*/
+                  b.addEventListener("click", function(e) {
+                      /*insert the value for the autocomplete text field:*/
+                      inp.value = this.getElementsByTagName("input")[0].value;
+                      /*close the list of autocompleted values,
+                      (or any other open lists of autocompleted values:*/
+                      closeAllLists();
+                  });
+                  a.appendChild(b);
+                }
+            }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function(e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                if (currentFocus > -1) {
+                  /*and simulate a click on the "active" item:*/
+                  if (x) x[currentFocus].click();
+                  // console.log("e:", e);
+                  // console.log("getElement_By_Description(lost.data, e.target.value): ", getElement_By_Description(lost.data, e.target.value));
+                  var lost_element = getElement_By_Description(lost.data, e.target.value);
+                  moveToLocation(lost_element.lat, lost_element.lng)
+                }
+            }
+        });
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+
+
 
         // Autocomplete methods
         var input = document.getElementById('pac-input');
@@ -184,7 +319,7 @@ var initMap = function() {
             map.fitBounds(place.geometry.viewport);
           } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);
+            map.setZoom(15);
           }
 
           // Set the position of the marker using the place ID and location.
@@ -227,15 +362,20 @@ var initMap = function() {
     xhr.send(null);
   }
 
-  var filter = function(level){
-    // console.log(level)
-    if(parseInt(level) === 4){
-      locations = loc;
-    }else{
-      locations = locations.filter(location => location[3] === parseInt(level));
-    }
 
-    generateMapFromLocations(locations);
-
+// To manage Filter on the level of the thing lost
+var filter = function(level){
+  document.getElementById("filter_1").classList.remove("menu_selected");
+  document.getElementById("filter_2").classList.remove("menu_selected");
+  document.getElementById("filter_3").classList.remove("menu_selected");
+  document.getElementById("filter_4").classList.remove("menu_selected");
+  document.getElementById("filter_"+level).classList.add("menu_selected");
+  // console.log(level)
+  if(parseInt(level) === 4){
     locations = loc;
+  }else{
+    locations = locations.filter(location => location[3] === parseInt(level));
   }
+  generateMapFromLocations(locations);
+  locations = loc;
+}

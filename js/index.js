@@ -87,25 +87,25 @@
 // xhr.send(null);
 
 
-function send(type){
+// function send(type){
 
-  var image = "", categorie = "", adresse =  "", lat =  "", lng =  "", description = "", type="";
+//   var image = "", categorie = "", adresse =  "", lat =  "", lng =  "", description = "";
 
-  if (type == "looking"){
-    image = document.getElementById("image").value;
-    categorie = document.getElementById("categorie").value;
-    adresse = document.getElementById("searchTextField").value;
-    lat = document.getElementById("lat").value;
-    lng = document.getElementById("lng").value;
-    description = document.getElementById("description").value;
-  }else{
-    image = document.getElementById("image2").value;
-    categorie = document.getElementById("categorie2").value;
-    adresse = document.getElementById("searchTextField2").value;
-    lat = document.getElementById("lat2").value;
-    lng = document.getElementById("lng2").value;
-    description = document.getElementById("description2").value;
-  }
+//   if (type == "looking"){
+//     image = document.getElementById("image").value;
+//     categorie = document.getElementById("categorie").value;
+//     adresse = document.getElementById("searchTextField").value;
+//     lat = document.getElementById("lat").value;
+//     lng = document.getElementById("lng").value;
+//     description = document.getElementById("description").value;
+//   }else{
+//     image = document.getElementById("image2").value;
+//     categorie = document.getElementById("categorie2").value;
+//     adresse = document.getElementById("searchTextField2").value;
+//     lat = document.getElementById("lat2").value;
+//     lng = document.getElementById("lng2").value;
+//     description = document.getElementById("description2").value;
+//   }
 
-  // http://sanix.pythonanywhere.com/api/lost?method=getall
-}
+//   // http://sanix.pythonanywhere.com/api/lost?method=getall
+// }

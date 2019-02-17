@@ -18,7 +18,9 @@
             <i class="fa fa-bars"></i>
              <center><div style="margin-top: -1.1em;">LOST</div></center>
             <div class="globalsearch">
-               <input id="pac-input2" class="controls" type="text" placeholder="Search a person, a thing or an animal" style="float:left;">
+               <div class="autocomplete" style="width:50%;">
+                  <input id="myInput" class="controls" type="text" placeholder="Search a person, a thing or an animal" style="float:left;width:100%!important;">
+               </div>
                <input id="pac-input" class="controls" type="text" placeholder="Search a place" style="float:right;">
             </div>
             <select onchange="change_lang(this.value)" class="select_lang" id="valueOflang">
@@ -32,22 +34,22 @@
          <nav class="s-sidebar__nav">
             <ul>
                <li id="show_people" onclick="filter(1)">
-                  <a class="s-sidebar__nav-link" href="#1" style="color:#f14546;">
+                  <a class="s-sidebar__nav-link" href="#1" id="filter_1" style="color:#f14546;">
                      <i class="fa fa-user"></i><em translate="MENU_PEOPLE">People</em>
                   </a>
                </li>
                <li id="show_animal" onclick="filter(2)">
-                  <a class="s-sidebar__nav-link" href="#2" style="color:yellow;">
+                  <a class="s-sidebar__nav-link" href="#2" id="filter_2" style="color:yellow;">
                      <i class="fa fa-paw"></i><em translate="MENU_ANIMALS">Animals</em>
                   </a>
                </li>
                <li id="show_other" onclick="filter(3)">
-                  <a class="s-sidebar__nav-link" href="#3" style="color:aqua;">
+                  <a class="s-sidebar__nav-link" href="#3" id="filter_3" style="color:aqua;">
                      <i class="fa fa-suitcase"></i><em translate="MENU_OTHERS">Others</em>
                   </a>
                </li>
                <li id="show_all" onclick="filter(4)">
-                  <a class="s-sidebar__nav-link" href="#4" >
+                  <a class="s-sidebar__nav-link" href="#4" id="filter_4" >
                      <i class="fa fa-square"></i><em translate="MENU_ALL">All</em>
                   </a>
                </li>
@@ -81,10 +83,10 @@
                <input type="hidden" id="image" value="" />
                <span translate="WRITE_IMAGE">Image </span>
                <div class="preview">
-                  <img src="" alt="" class="preview-img">
+                  <img src="" alt="" class="preview-img" id="previewimg1">
                </div>
-               <input type="file" accept=".png,.jpeg,.jpg,.gif">
-               <button class="button" onclick="clearField()">Clear field </button>
+               <input type="file" accept=".png,.jpeg,.jpg,.gif" id="previewfile1">
+               <!-- <button class="button" onclick="clearField()">Clear field </button>-->
             </label>
             <br><br>
 
@@ -133,10 +135,10 @@
                <input type="hidden" id="image2" value="" />
                <span translate="WRITE_IMAGE">Image </span>
                <div class="preview">
-                  <img src="" alt="" class="preview-img">
+                  <img src="" alt="" class="preview-img" id="previewimg2">
                </div>
-               <input type="file" accept=".png,.jpeg,.jpg,.gif">
-               <button class="button" onclick="clearField()">Clear field </button>
+               <input type="file" accept=".png,.jpeg,.jpg,.gif" id="previewfile2">
+               <!-- <button class="button" onclick="clearField()">Clear field </button>-->
             </label>
             <br><br>
 
@@ -173,12 +175,12 @@
       </article>
    </div>
 
-   <small style="position:fixed;bottom: 0.3em;left: 9em;z-index:999999!important;color:white;">By <a href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
+   <small style="position:fixed;bottom: 0.9em;left: 9em;z-index:999999!important;color:white;">By <a href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
 
    <script type="text/javascript" src = "js/modal.js"></script>
    <script type="text/javascript" src = "js/lang.js"></script>
    <script type="text/javascript" src = "js/form.js"></script>
-
+   
    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&amp;language=en&amp;libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q" async defer></script>
    <script type="text/javascript" src = "js/map.js"></script>
 </body>
