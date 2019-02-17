@@ -18,7 +18,7 @@
     $todir = 'uploads/';
     if (isset($_FILES['file']['tmp_name']) ) // is the file uploaded yet?
     {
-        if($_FILES["file"]["size"] < 200000){ // < 200Kb
+        if($_FILES["file"]["size"] < 500000){ // < 500Kb
             $info = explode('.', strtolower( $_FILES['file']['name']) ); // whats the extension of the file
 
             if ( in_array( end($info), $allow) ) // is this file allowed

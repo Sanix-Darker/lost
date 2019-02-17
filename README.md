@@ -27,7 +27,12 @@ As a potential contributor, am asking you to update/add feature on this platform
 
 ## Render
 
-<img src="img/desktop.PNG">
+<table>
+    <tr>
+        <td><img src="img/desktop.PNG"></td>
+        <td><img src="img/desktop2.PNG"></td>
+    </tr>
+</table>
 
 <table>
     <tr>
