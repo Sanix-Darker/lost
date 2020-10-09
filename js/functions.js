@@ -152,3 +152,55 @@ var previewImg = function (event, Id){
         document.getElementById(Id).src = fileReader.readAsDataURL(file);
     }
 }
+
+
+/**
+ * We return the appropriate DOM component, tdepending the type of what we are goign to do
+ * @param {*} type 
+ */
+var getParamsFromType = function(type){
+    var image = response.url, categorie = "", adresse =  "", lat =  "", lng =  "", description = "";
+  
+    if (type == "looking"){
+       categorie = document.getElementById("categorie").value;
+       adresse = document.getElementById("searchTextField").value;
+       lat = document.getElementById("lat").value;
+       lng = document.getElementById("lng").value;
+       description = document.getElementById("description").value;
+    }else{
+       categorie = document.getElementById("categorie2").value;
+       adresse = document.getElementById("searchTextField2").value;
+       lat = document.getElementById("lat2").value;
+       lng = document.getElementById("lng2").value;
+       description = document.getElementById("description2").value;
+    }
+
+    return {
+      image,
+      categorie,
+      adresse,
+      lat, lng,
+      description
+    }
+}
+  
+
+/**
+ * This method will reset the whole form
+ */
+var resetForm = function() {
+    document.querySelector(".action").innerHTML = (LangWanted == "fr") ? "Envoyer" : "Send";
+            
+    document.getElementById("previewimg1").src="";
+    document.getElementById("previewimg2").src="";
+    document.getElementById("categorie").value = null;
+    document.getElementById("searchTextField").value = null;
+    document.getElementById("lat").value = null;
+    document.getElementById("lng").value = null;
+    document.getElementById("description").value = null;
+    document.getElementById("categorie2").value = null;
+    document.getElementById("searchTextField2").value = null;
+    document.getElementById("lat2").value = null;
+    document.getElementById("lng2").value = null;
+    document.getElementById("description2").value = null;
+}
