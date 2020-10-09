@@ -2,23 +2,16 @@
 
 
 
-function send(type){
+var send = function (type){
 
-  if(LangWanted == "fr"){
-    document.querySelector(".action").innerHTML = "Envoies en cours...";
-  }else{
-    document.querySelector(".action").innerHTML = "Sending....";
-  }
+  document.querySelector(".action").innerHTML = (LangWanted == "fr") ? "Envoies en cours..." : "Sending....";
 
    var formData = new FormData();
 
-   if (type == "looking"){
-      // HTML file input, chosen by user
+   if (type == "looking")
       formData.append("file", input.files[0]);
-   }else{
-      // HTML file input, chosen by user
+   else
       formData.append("file", input2.files[0]);
-   }
 
    var request = new XMLHttpRequest();
    request.open("POST", "http://");
@@ -56,18 +49,13 @@ function send(type){
            
            var response2 = JSON.parse(request2.responseText);
            if (request2.readyState == 4 && request2.status == "200") {
-               //console.log("response2: ", response2);
-               document.querySelector('.close').click();
-               // close
-               initMap();
-               // Center sur les parametres voulus
-               moveToLocation(parseFloat(lat), parseFloat(lng));
-
-              if(LangWanted == "fr"){
-                document.querySelector(".action").innerHTML = "Envoyer";
-              }else{
-                document.querySelector(".action").innerHTML = "Send";
-              }
+              document.querySelector('.close').click();
+              // close
+              initMap();
+              // Center sur les parametres voulus
+              moveToLocation(parseFloat(lat), parseFloat(lng));
+              
+              document.querySelector(".action").innerHTML = (LangWanted == "fr") ? "Envoyer" : "Send";
               
               document.getElementById("previewimg1").src="";
               document.getElementById("previewimg2").src="";
@@ -81,13 +69,10 @@ function send(type){
               document.getElementById("lat2").value = null;
               document.getElementById("lng2").value = null;
               document.getElementById("description2").value = null;
-
-           }
-         }
-         request2.send(null);
-
+          }
+        }
+        request2.send(null);
      }
    }
    request.send(formData);
-
 }

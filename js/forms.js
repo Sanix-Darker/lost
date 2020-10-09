@@ -16,31 +16,6 @@ var filter = function(level){
     generateMapFromLocations(locations);
     locations = loc;
 }
-
-
-/**
- * We preview the img
- * @param {*} event 
- * @param {*} Id 
- */
-var previewImg = function (event, Id){
-    var file = event.target.files[0];
-
-    if(file.size > 500000){
-       alert("Your image is too hight!")
-       return false;
-    }
-
-    if (file) {
-        var fileReader = new FileReader();
-
-        fileReader.addEventListener("load", function () {
-            document.getElementById(Id).src = fileReader.result;
-        }, false);
-
-        document.getElementById(Id).src = fileReader.readAsDataURL(file);
-    }
-}
   
 
 // Formulaires

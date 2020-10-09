@@ -18,6 +18,7 @@ var addActive = function (x) {
   x[currentFocus].classList.add("autocomplete-active");
 }
 
+
 /**
  * A function to remove the "active" class from all autocomplete items:
  * @param {*} x 
@@ -27,6 +28,7 @@ var removeActive = function (x) {
     x[i].classList.remove("autocomplete-active");
   }
 }
+
 
 /**
  * close all autocomplete lists in the document, except the one passed as an argument
@@ -41,11 +43,13 @@ var closeAllLists = function (elmnt) {
   }
 }
 
+
 var getElement_By_Description = function(datas, description){
   return datas.filter(obj => {
     return obj.description == description
   })[0];
 }
+
 
 /**
  * We create the event listener on a button
@@ -66,6 +70,7 @@ var modalEvent = function (button) {
         modal.classList.toggle('open');
     });
 }
+
 
 /**
  * This method will return a unique ID
@@ -88,6 +93,7 @@ var get_icon_color = function (level){
       return "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
     }
 }
+
 
 /**
  * This method will just generate the InfoWindow bull
@@ -120,5 +126,29 @@ var buildInfowindow = function(locations, comments){
                 // '</div>'+
               '</div>'+
             '</div>';
-  } 
-  
+} 
+
+
+/**
+ * We preview the img
+ * @param {*} event 
+ * @param {*} Id 
+ */
+var previewImg = function (event, Id){
+    var file = event.target.files[0];
+
+    if(file.size > 500000){
+       alert("Your image is too hight!")
+       return false;
+    }
+
+    if (file) {
+        var fileReader = new FileReader();
+
+        fileReader.addEventListener("load", function () {
+            document.getElementById(Id).src = fileReader.result;
+        }, false);
+
+        document.getElementById(Id).src = fileReader.readAsDataURL(file);
+    }
+}
