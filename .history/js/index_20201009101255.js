@@ -1,6 +1,6 @@
 /* Don't forget to add trigger.js for a sample demo */
 
-var API_URL = "http://127.0.0.1:5000";
+var API_URL = "http://sanix.pythonanywhere.com";
 
 var get_icon_color = function (level){
   if(level == 1){
@@ -472,7 +472,7 @@ function send(type){
    }
 
    var request = new XMLHttpRequest();
-   request.open("POST", "http://");
+   request.open("POST", "http://lostimage.000webhostapp.com");
    request.onload = function () {
      
      var response = JSON.parse(request.responseText);
@@ -506,9 +506,10 @@ function send(type){
         //          "&description="+description);
 
          var request2 = new XMLHttpRequest();
-         request2.open("GET", API_URL + "/api/lost?method=post&image=" + image + 
-         "&categorie=" + categorie + 
-         "&adresse=" + adresse + "&lat="+lat+
+         request2.open("GET", "http://sanix.pythonanywhere.com/api/lost?method=post&image="+image+
+                                                                                              "&categorie="+categorie+
+                                                                                                "&adresse="+adresse+
+                                                                                                  "&lat="+lat+
                                                                                                     "&lng="+lng+
                                                                                                       "&description="+description+
                                                                                                         "&type="+type);

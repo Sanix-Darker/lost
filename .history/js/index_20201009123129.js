@@ -506,9 +506,10 @@ function send(type){
         //          "&description="+description);
 
          var request2 = new XMLHttpRequest();
-         request2.open("GET", API_URL + "/api/lost?method=post&image=" + image + 
-         "&categorie=" + categorie + 
-         "&adresse=" + adresse + "&lat="+lat+
+         request2.open("GET", API_URL + "/api/lost?method=post&image="+image+
+                                                                                              "&categorie="+categorie+
+                                                                                                "&adresse="+adresse+
+                                                                                                  "&lat="+lat+
                                                                                                     "&lng="+lng+
                                                                                                       "&description="+description+
                                                                                                         "&type="+type);

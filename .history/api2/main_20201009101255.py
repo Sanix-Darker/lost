@@ -16,7 +16,7 @@ import sqlite3
 import json
 # j = json.loads('{"one" : "1", "two" : "2", "three" : "3"}')
 
-DATABASE = "./data/lost.db"
+DATABASE = "C:/vagrant/PYTHON/Python-SQLite-API/data/lost.db"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
