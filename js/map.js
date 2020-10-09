@@ -1,34 +1,6 @@
 
-var get_icon_color = function (level){
-  if(level == 1){
-    return "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-  }else if(level == 2){
-    return "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
-  }else{
-    return "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-  }
-}
-
-const buttons = document.querySelectorAll(`button[data-modal-trigger]`);
-
-for(let button of buttons) {
+for(let button of document.querySelectorAll(`button[data-modal-trigger]`)) {
     modalEvent(button);
-}
-
-function modalEvent(button) {
-    button.addEventListener('click', () => {
-
-        const trigger = button.getAttribute('data-modal-trigger');
-        const modal = document.querySelector(`[data-modal=${trigger}]`);
-        const contentWrapper = modal.querySelector('.content-wrapper');
-        const close = modal.querySelector('.close');
-
-        close.addEventListener('click', () => modal.classList.remove('open'));
-        modal.addEventListener('click', () => modal.classList.remove('open'));
-        contentWrapper.addEventListener('click', (e) => e.stopPropagation());
-
-        modal.classList.toggle('open');
-    });
 }
 
 // In the form [LOOKING FOR, etc...]
@@ -71,43 +43,6 @@ var initialize_form_place = function() {
     });
 };
 
-var UniqueID = function () {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
-  return '_' + Math.random().toString(36).substr(2, 9);
-};
-
-
-var buildInfowindow = function(locations, comments){
-  ////console.log("locations: ", locations);
-  var id = UniqueID();
-  return '<div id="iw-container">' +
-          ((locations[4] !== "found") ? '<div class="redSup" translate="LOOKING_BUTTON">Looking for</div>' : '<div class="greenSup" translate="FOUND_BUTTON"> I found </div>') +
-            '<div class="iw-content">' +
-              '<img src="http://'+locations[5]+'" alt="Image" >' +
-              '<div class="iw-subTitle">' + locations[0] + '</div>' +
-              '<br><div class="infowindow_description">' + locations[6] + '</div><hr>'+
-              // '<span translate="EXPLICATIONS_COMMENTS">Please contact me directly or write a small comment here to help me, thank you (<b>Note:</b> You can write only 2 comments).<br></span>'+
-              // '<div id="found_'+id+'" >'+
-              //   '<label>'+
-              //       '<span translate="FORM_CONTACT">Your Contact</span><br>'+
-              //       '<input type="text" id="textfound_'+id+'" placeholder="max(50)" class="infowindowForm"/>'+
-              //   '</label><br>'+
-              //   '<label>'+
-              //       '<span  translate="FORM_COMMENTS_DESCRIPTION">Explains in few line where you found(max 100)</span><br>'+
-              //       '<textarea rows="5" id="descriptionfound_'+id+'" class="infowindowForm"></textarea><br>'+
-              //   '</label>'+
-              //   '<button translate="BUTTON_SEND">Send</button>'+
-              // '</div>'+
-              // '<br><span translate="SUBTITLE_COMMENTS">Some Comments</span>'+
-              // '<div id="comments_'+id+'">'+
-              //   comments+
-              // '</div>'+
-            '</div>'+
-          '</div>';
-} 
-
 var map;
 var generateMapFromLocations = function(locations){
 
@@ -118,7 +53,6 @@ var generateMapFromLocations = function(locations){
   });
 
   var infowindow = new google.maps.InfoWindow();
-
   var marker, i;
 
   for (i = 0; i < locations.length; i++) {  
@@ -146,46 +80,6 @@ var generateMapFromLocations = function(locations){
   }
 }
 
-/* AUTO COMPLETE METHODS ----
-----------------------------*/
-//the text field element and an array of possible autocompleted values:*/
-var currentFocus;
-var inp = document.getElementById("myInput");
-function addActive(x) {
-  /*a function to classify an item as "active":*/
-  if (!x) return false;
-  /*start by removing the "active" class on all items:*/
-  removeActive(x);
-  if (currentFocus >= x.length) currentFocus = 0;
-  if (currentFocus < 0) currentFocus = (x.length - 1);
-  /*add class "autocomplete-active":*/
-  x[currentFocus].classList.add("autocomplete-active");
-}
-function removeActive(x) {
-  /*a function to remove the "active" class from all autocomplete items:*/
-  for (var i = 0; i < x.length; i++) {
-  x[i].classList.remove("autocomplete-active");
-  }
-}
-function closeAllLists(elmnt) {
-  /*close all autocomplete lists in the document,
-  except the one passed as an argument:*/
-  var x = document.getElementsByClassName("autocomplete-items");
-  for (var i = 0; i < x.length; i++) {
-  if (elmnt != x[i] && elmnt != inp) {
-      x[i].parentNode.removeChild(x[i]);
-  }
-  }
-}
-
-
-var getElement_By_Description = function(datas, description){
-  // //console.log("datas: ", datas);
-  // //console.log("description: ", description);
-  return datas.filter(obj => {
-    return obj.description == description
-  })[0];
-}
 
 function moveToLocation(lat, lng){
   var center = new google.maps.LatLng(lat, lng);
@@ -357,11 +251,8 @@ var initMap = function() {
               '<pre>' + JSON.stringify(place, null, " ") + '</pre>';
           });
 
-        }); // end autocomplete addListener
-
-      } else {
-        //console.error(lost.data);
+        });
       }
     }
     xhr.send(null);
-  }
+}
