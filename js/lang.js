@@ -3,12 +3,12 @@
  * Author: Sanix darker
  */
 // this parameter represent the default language you want
-var value_of_lang_you_want = "en";
+var LangWanted = "en";
 // this is the array of your languages
-var array_lang = [ "fr","en","sp"];
+var arrayLang = [ "fr","en","sp"];
 
 // this is the arrays of your differents values
-var array_lang_value = [
+var arrayLangValue = [
 	// fr : French
 	{
 		"CHOOSE_LANGUE" : "Choisissez la langue",
@@ -88,24 +88,23 @@ function change_lang(langcode){
 	var lang = langcode
 
 	// If the lang parameter exist
-	if(lang && lang.length>0 && array_lang.includes(lang)){
+	if(lang && lang.length>0 && arrayLang.includes(lang)){
 		// To prevent false parameters that's not defined
-		value_of_lang_you_want = lang;
+		LangWanted = lang;
 		// On sauve dans le navigateur
-		localStorage.setItem("Sanix_lang_app", value_of_lang_you_want);
-		document.getElementById('valueOflang').value = value_of_lang_you_want;
+		localStorage.setItem("Sanix_lang_app", LangWanted);
+		document.getElementById('valueOflang').value = LangWanted;
 	}else if (typeof(Storage) !== "undefined") { // if Not
 		// For the local storage
-		value_of_lang_you_want = localStorage.getItem("Sanix_lang_app");
-		document.getElementById('valueOflang').value = value_of_lang_you_want;
+		LangWanted = localStorage.getItem("Sanix_lang_app");
+		document.getElementById('valueOflang').value = LangWanted;
 	}
-
-	var arr = document.querySelectorAll("[translate]");
-	var nodesArray = [].slice.call(arr);
+	
+	var nodesArray = [].slice.call(document.querySelectorAll("[translate]"));
 
 	[].forEach.call(nodesArray, function(element) {
 		var value_to_translate = element.attributes.translate.nodeValue;
-		element.innerHTML = array_lang_value[array_lang.indexOf(value_of_lang_you_want)][value_to_translate];
+		element.innerHTML = arrayLangValue[arrayLang.indexOf(LangWanted)][value_to_translate];
 	});
 
 }
