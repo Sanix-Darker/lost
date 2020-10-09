@@ -1,1 +1,6 @@
 api/node_modules/
+*__pycache__
+*.pyc
+*.db
+config.txt
+.history
