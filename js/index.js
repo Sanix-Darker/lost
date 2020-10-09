@@ -12,7 +12,6 @@ var get_icon_color = function (level){
   }
 }
 
-
 const buttons = document.querySelectorAll(`button[data-modal-trigger]`);
 
 for(let button of buttons) {
@@ -304,14 +303,10 @@ var initMap = function() {
             closeAllLists(e.target);
         });
 
-
-
         // Autocomplete methods
         var input = document.getElementById('pac-input');
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', map);
-
-        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
@@ -363,7 +358,6 @@ var initMap = function() {
               '<p><strong>GMap Url:</strong> <code>' + place.url + '</code></p>' +
               '<p><strong>Place details:</strong></p>' +
               '<pre>' + JSON.stringify(place, null, " ") + '</pre>';
-
           });
 
         }); // end autocomplete addListener
@@ -383,7 +377,7 @@ var filter = function(level){
   document.getElementById("filter_3").classList.remove("menu_selected");
   document.getElementById("filter_4").classList.remove("menu_selected");
   document.getElementById("filter_"+level).classList.add("menu_selected");
-  // //console.log(level)
+
   if(parseInt(level) === 4){
     locations = loc;
   }else{
@@ -464,11 +458,7 @@ function send(type){
      var response = JSON.parse(request.responseText);
      if (request.readyState == 4 && request.status == "200") {
 
-         ////console.log("response: ", response);
-
          var image = response.url, categorie = "", adresse =  "", lat =  "", lng =  "", description = "";
-
-         ////console.log("image:", image);
 
          if (type == "looking"){
             categorie = document.getElementById("categorie").value;
