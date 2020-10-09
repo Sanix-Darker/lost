@@ -11,11 +11,8 @@ var filter = function(level){
     document.getElementById("filter_4").classList.remove("menu_selected");
     document.getElementById("filter_"+level).classList.add("menu_selected");
 
-    if(parseInt(level) === 4){
-      locations = loc;
-    }else{
-      locations = locations.filter(location => location[3] === parseInt(level));
-    }
+    locations = (parseInt(level) === 4) ? loc : locations.filter(location => location[3] === parseInt(level));
+
     generateMapFromLocations(locations);
     locations = loc;
 }
@@ -48,10 +45,12 @@ var previewImg = function (event, Id){
 
 // Formulaires
 document.getElementById('previewfile1').addEventListener('change', function(event){
+    // we preview the image to that image element
     previewImg(event, 'previewimg1');
 });
   
 
 document.getElementById('previewfile2').addEventListener('change', function(event){
+    // we preview the image to that image element
     previewImg(event, 'previewimg2');
 });
