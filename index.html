@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
    <meta charset="UTF-8">
@@ -11,15 +11,18 @@
 
 <body>
 
-  <div class="s-layout">
+   <div class="s-layout">
       <!-- Sidebar -->
       <div class="s-layout__sidebar">
          <a class="s-sidebar__trigger" href="#0" style="color:white">
             <i class="fa fa-bars"></i>
-             <center><div style="margin-top: -1.1em;">LOST</div></center>
+            <center>
+               <div style="margin-top: -1.1em;">LOST</div>
+            </center>
             <div class="globalsearch">
                <div class="autocomplete" style="width:50%;">
-                  <input id="myInput" class="controls" type="text" placeholder="Search a person, a thing or an animal" style="float:left;width:100%!important;">
+                  <input id="myInput" class="controls" type="text" placeholder="Search a person, a thing or an animal"
+                     style="float:left;width:100%!important;">
                </div>
                <input id="pac-input" class="controls" type="text" placeholder="Search a place" style="float:right;">
             </div>
@@ -49,15 +52,17 @@
                   </a>
                </li>
                <li id="show_all" onclick="filter(4)">
-                  <a class="s-sidebar__nav-link" href="#4" id="filter_4" >
+                  <a class="s-sidebar__nav-link" href="#4" id="filter_4">
                      <i class="fa fa-square"></i><em translate="MENU_ALL">All</em>
                   </a>
                </li>
-               <li  >
-                  <button data-modal-trigger="trigger-1" class="trigger button_add" translate="LOOKING_BUTTON">Looking for </button>
+               <li>
+                  <button data-modal-trigger="trigger-1" class="trigger button_add" translate="LOOKING_BUTTON">Looking
+                     for </button>
                </li>
-               <li  >
-                  <button data-modal-trigger="trigger-2" class="trigger button_add" translate="FOUND_BUTTON"> I found </button>
+               <li>
+                  <button data-modal-trigger="trigger-2" class="trigger button_add" translate="FOUND_BUTTON"> I found
+                  </button>
                </li>
             </ul>
          </nav>
@@ -101,15 +106,16 @@
             </label>
             <br>
 
-            <label >
-               <span >Localisation</span>
-               <input id="searchTextField" type="text" class="lost_form" placeholder="Enter a location" autocomplete="off">
+            <label>
+               <span>Localisation</span>
+               <input id="searchTextField" type="text" class="lost_form" placeholder="Enter a location"
+                  autocomplete="off">
                <div id="latlng"></div>
                <input type="hidden" id="lat" value="" />
                <input type="hidden" id="lng" value="" />
             </label>
             <br>
-            
+
             <label>
                <span translate="WRITE_DESCRIPTION">Description (max 250 )</span>
                <textarea class="lost_form" row="4" id="description"></textarea>
@@ -129,7 +135,7 @@
          <header class="modal-header">
             <h2 translate="FOUND_BUTTON"> I found </h2>
          </header>
-         <div class="content"  style="padding:10px;width: 100%;">
+         <div class="content" style="padding:10px;width: 100%;">
 
             <label>
                <input type="hidden" id="image2" value="" />
@@ -153,15 +159,16 @@
             </label>
             <br>
 
-            <label >
-               <span >Localisation</span>
-               <input id="searchTextField2" type="text" class="lost_form" placeholder="Enter a location" autocomplete="off">
+            <label>
+               <span>Localisation</span>
+               <input id="searchTextField2" type="text" class="lost_form" placeholder="Enter a location"
+                  autocomplete="off">
                <div id="latlng2"></div>
                <input type="hidden" id="lat2" value="" />
                <input type="hidden" id="lng2" value="" />
             </label>
             <br>
-            
+
             <label>
                <span translate="WRITE_DESCRIPTION">Description (max 250 )</span>
                <textarea class="lost_form" row="4" id="description2"></textarea>
@@ -170,16 +177,23 @@
          </div>
          <footer class="modal-footer">
             <button class="action" translate="BUTTON_SEND" onclick="send('found')">Send</button>
-            <!-- <button class="action close" translate="BUTTON_CANCEL">Cancel</button> -->
+            <button class="action close" translate="BUTTON_CANCEL">Cancel</button>
          </footer>
       </article>
    </div>
 
-   <small style="position:fixed;bottom: 0.9em;left: 9em;z-index:999999!important;color:white;">By <a href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
+   <small style="position:fixed;bottom: 0.9em;left: 9em;z-index:999999!important;color:white;">By <a
+         href="https://github.com/sanix-darker" target="_blank">🐼Sanix darker</small>
 
-   <script type="text/javascript" src = "js/lang.js"></script>   
-   <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&amp;language=en&amp;libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q" async defer></script>
-   <script type="text/javascript" src = "js/index.js"></script>
+   <script type="text/javascript" src="js/lang.js"></script>
+   <script
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap&amp;language=en&amp;libraries=places&key=AIzaSyB0Tw50sQKwbXt8G2phWkhVv7_1cQcDw7Q"
+      async defer></script>
+
+   <script type="text/javascript" src="js/config.js"></script>
+   <script type="text/javascript" src="js/map.js"></script>
+   <script type="text/javascript" src="js/form.js"></script>
+   <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
