@@ -40,8 +40,7 @@ var a,lat,long;
 var markerimg = 'https://i.imgur.com/Qwv4lBZ.png';
 
 var initialize_form_place = function() {
-    //document.getElementById("info").style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center=toronto&zoom=15&scale=1&size=700x420&maptype=roadmap&format=png&visual_refresh=true&markers=icon:"+markerimg+"%7Cshadow:true%7Ctoronto)";
-
+  
     var searchBox = document.getElementById('searchTextField');
     var defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(43.7182713,-79.3777061));
 
@@ -56,7 +55,6 @@ var initialize_form_place = function() {
       document.getElementById("latlng").innerHTML = ' '+lat+' , '+long;
       document.getElementById("lat").value = lat;
       document.getElementById("lng").value = long;
-      // document.getElementById("info").style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center="+lat+','+long+"&zoom=15&key=AIzaSyAfxspB4AgYgfzf1ipKS5Al0CA3cAYfZRQ&scale=1&size=700x420&maptype=roadmap&format=png&visual_refresh=true&markers=icon:"+markerimg+"%7Cshadow:true%7C"+lat+','+long+")";
     });
 
 
@@ -74,7 +72,6 @@ var initialize_form_place = function() {
       document.getElementById("latlng2").innerHTML = ' '+lat+' , '+long;
       document.getElementById("lat2").value = lat;
       document.getElementById("lng2").value = long;
-      // document.getElementById("info").style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center="+lat+','+long+"&zoom=15&key=AIzaSyAfxspB4AgYgfzf1ipKS5Al0CA3cAYfZRQ&scale=1&size=700x420&maptype=roadmap&format=png&visual_refresh=true&markers=icon:"+markerimg+"%7Cshadow:true%7C"+lat+','+long+")";
     });
 };
 
@@ -259,13 +256,6 @@ var initMap = function() {
                   var re = new RegExp("\\b("+val+")\\b");
                   var subst = '<strong>$1</strong>';
 
-                  // A Proble for the regex here, will look it later
-                  // //console.log("re: ", re);
-                  // //console.log("val: ", val);
-                  // //console.log("arr[i]: ", arr[i]);
-                  // //console.log("subst: ", subst);
-                  // //console.log("arr[i].replace(re, subst): ", arr[i].replace(re, subst));
-
                   b.innerHTML = arr[i].description.replace(re, subst);
                   /*insert a input field that will hold the current array item's value:*/
                   b.innerHTML += "<input type='hidden' value='" + arr[i].description + "'>";
@@ -448,10 +438,6 @@ input2.addEventListener('change', function(event){
    }
 });
 
-// function clearField() {
-//    img.src ="";   
-//    input.value="";
-// };
 
 function send(type){
 
@@ -498,20 +484,15 @@ function send(type){
             description = document.getElementById("description2").value;
          }
 
-        //  //console.log("http://sanix.pythonanywhere.com/api/lost?method=post&image="+image+
-        //  "&categorie="+categorie+
-        //    "&adresse="+adresse+
-        //      "&lat="+lat+
-        //        "&lng="+lng+
-        //          "&description="+description);
-
          var request2 = new XMLHttpRequest();
-         request2.open("GET", API_URL + "/api/lost?method=post&image=" + image + 
-         "&categorie=" + categorie + 
-         "&adresse=" + adresse + "&lat="+lat+
-                                                                                                    "&lng="+lng+
-                                                                                                      "&description="+description+
-                                                                                                        "&type="+type);
+         request2.open("GET", 
+          API_URL + "/api/lost?method=post&image=" + image + 
+          "&categorie=" + categorie + 
+          "&adresse=" + adresse + 
+          "&lat=" + lat + "&lng=" + lng +
+          "&description=" + description + 
+          "&type="+type
+         );
          request2.onload = function () {
            
            var response2 = JSON.parse(request2.responseText);
@@ -542,8 +523,6 @@ function send(type){
               document.getElementById("lng2").value = null;
               document.getElementById("description2").value = null;
 
-
-
            }
          }
          request2.send(null);
@@ -552,7 +531,4 @@ function send(type){
    }
    request.send(formData);
 
-
-
-   // http://sanix.pythonanywhere.com/api/lost?method=getall
- }
+}
